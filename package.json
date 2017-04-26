@@ -1,0 +1,14 @@
+{
+  "name": "isomorphic-style-helper",
+  "version": "1.0.0",
+  "main": "modules/index.js",
+  "repository": "git@github.com:lucaslim/isomorphic-style-helper.git",
+  "author": "Lucas L. <hi@lucas.codes>",
+  "license": "MIT",
+  "peerDependencies": {
+    "create-react-class": "^15.5.2",
+    "isomorphic-style-loader": "^2.0.0",
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4"
+  }
+}
