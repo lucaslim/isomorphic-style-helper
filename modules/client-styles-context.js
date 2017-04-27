@@ -1,7 +1,7 @@
-import { PureComponent, Children } from 'react';
+import { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 
-class ClientStylesContext extends PureComponent {
+class ClientStylesContext extends Component {
   static propTypes = {
     children: PropTypes.element.isRequired
   }
@@ -11,11 +11,7 @@ class ClientStylesContext extends PureComponent {
   }
 
   getChildContext() {
-    return {
-      insertCss: function (styles) {
-        return styles._insertCss();
-      }
-    };
+    return { insertCss: styles => styles._insertCss() };
   }
 
   render() {

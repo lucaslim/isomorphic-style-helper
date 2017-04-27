@@ -1,7 +1,7 @@
-import { PureComponent, Children } from 'react';
+import { Component, Children } from 'react';
 import PropTypes from 'prop-types';
 
-class ServerStylesContext extends PureComponent {
+class ServerStylesContext extends Component {
   static propTypes = {
     css: PropTypes.array.isRequired,
     children: PropTypes.element.isRequired
@@ -13,7 +13,7 @@ class ServerStylesContext extends PureComponent {
 
   getChildContext() {
     let { css } = this.props;
-    return { insertCss: (...styles) => styles.forEach(style => css.push(style._getCss())) };
+    return { insertCss: styles => css.push(styles._getCss()) };
   }
 
   render() {
