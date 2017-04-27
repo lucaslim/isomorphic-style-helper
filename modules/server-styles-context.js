@@ -1,27 +1,24 @@
-var createReactClass = require('create-react-class');
-var PropTypes = require('prop-types');
-var Children = require('react').Children;
+import { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 
-var ServerStylesContext = createReactClass({
-  getChildContext: function () {
-    var self = this;
-    return {
-      insertCss: function (styles) {
-        return self.props.context.push(styles._getCss())
-      }
-    };
-  },
+class ServerStylesContext extends PureComponent {
+  static propTypes = {
+    css: PropTypes.array.isRequired,
+    children: PropTypes.element.isRequired
+  }
+
+  static childContextTypes = {
+    insertCss: PropTypes.func.isRequired
+  }
+
+  getChildContext() {
+    let { css } = this.props;
+    return { insertCss: (...styles) => styles.forEach(style => css.push(style._getCss())) };
+  }
+
   render() {
     return Children.only(this.props.children);
   }
-});
-
-ServerStylesContext.propTypes = {
-  context: PropTypes.array.isRequired
 }
 
-ServerStylesContext.childContextTypes = {
-  insertCss: PropTypes.func.isRequired
-};
-
-module.exports = ServerStylesContext;
+export default ServerStylesContext;

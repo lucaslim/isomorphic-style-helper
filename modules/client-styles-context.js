@@ -1,22 +1,25 @@
-var Children = require('react').Children;
-var createReactClass = require('create-react-class');
-var PropTypes = require('prop-types');
+import { PureComponent, Children } from 'react';
+import PropTypes from 'prop-types';
 
-var ClientStylesContext = createReactClass({
-  getChildContext: function () {
+class ClientStylesContext extends PureComponent {
+  static propTypes = {
+    children: PropTypes.element.isRequired
+  }
+
+  static childContextTypes = {
+    insertCss: PropTypes.func.isRequired
+  }
+
+  getChildContext() {
     return {
       insertCss: function (styles) {
         return styles._insertCss();
       }
     };
-  },
+  }
+
   render() {
     return Children.only(this.props.children);
   }
-});
-
-ClientStylesContext.childContextTypes = {
-  insertCss: PropTypes.func.isRequired
-};
-
-module.exports = ClientStylesContext;
+}
+export default ClientStylesContext;
