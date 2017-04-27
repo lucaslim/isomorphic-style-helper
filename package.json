@@ -1,6 +1,6 @@
 {
   "name": "isomorphic-style-helper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "modules/index.js",
   "repository": "git@github.com:lucaslim/isomorphic-style-helper.git",
   "author": "Lucas L. <hi@lucas.codes>",
